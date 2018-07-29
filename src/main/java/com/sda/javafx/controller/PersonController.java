@@ -3,6 +3,7 @@ package com.sda.javafx.controller;
 import com.sda.javafx.Main;
 import com.sda.javafx.model.Person;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -39,7 +40,21 @@ public class PersonController {
     private TableColumn<Person, String> lastNameCol;
 
     @FXML
-    public void initialize(){
+    private Button newButton;
+
+    @FXML
+    private Button editButton;
+
+    @FXML
+    private Button deleteButton;
+
+    @FXML
+    public void handleNewButton(){
+        this.main.loadPersonEdit();
+    }
+
+    @FXML
+    public void initialize() {
         firstNameCol.setCellValueFactory(cell -> cell.getValue().nameProperty());
         lastNameCol.setCellValueFactory(cell -> cell.getValue().lastNameProperty());
     }

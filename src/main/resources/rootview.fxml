@@ -114,7 +114,7 @@
                                     <Label layoutX="14.0" layoutY="25.0" text="Szczegóły pracownika:" />
                                     <ButtonBar layoutX="42.0" layoutY="306.0" prefHeight="40.0" prefWidth="277.0">
                                       <buttons>
-                                        <Button mnemonicParsing="false" text="Nowy" />
+                                        <Button onAction="#handleNewButton" mnemonicParsing="false" text="Nowy" />
                                           <Button mnemonicParsing="false" text="Edytuj" />
                                           <Button mnemonicParsing="false" text="Usuń" />
                                       </buttons>
