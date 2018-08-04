@@ -1,5 +1,6 @@
 package com.sda.javafx;
 
+import com.sda.javafx.controller.NewPersonDetails;
 import com.sda.javafx.controller.PersonController;
 import com.sda.javafx.controller.PersonDetails;
 import com.sda.javafx.model.Person;
@@ -20,28 +21,45 @@ public class Main extends Application {
 
     private ObservableList<Person> personList = FXCollections.observableArrayList();
 
-    public Main(){
-        personList.add(new Person("Jan", "Kowalski", "ul. Grudziądzka", "Toruń", "87100", "666555444"));
-        personList.add(new Person("Łukasz", "Ącki","ul. Grudziądzka", "Toruń", "87100", "666555444"));
-        personList.add(new Person("Krzysztof", "Bęcki", "ul. Grudziądzka", "Toruń", "87100", "666555444"));
-        personList.add(new Person("Grażyna", "Waligórska", "ul. Grudziądzka", "Toruń", "87100", "666555444"));
-        personList.add(new Person("Beata", "Frąckowiak", "ul. Grudziądzka", "Toruń", "87100", "666555444"));
-        personList.add(new Person("Michał", "Ciąkalski", "ul. Grudziądzka", "Toruń", "87100", "666555444"));
-        personList.add(new Person("Wanda", "Berezyńska", "ul. Grudziądzka", "Toruń", "87100", "666555444"));
-        personList.add(new Person("Patryk", "Śmiechowski", "ul. Grudziądzka", "Toruń", "87100", "666555444"));
+    public Main() {
+
+//    }
+//
+//    public static void main(String[] args) throws IOException {
+//        List<Person> personList = new ArrayList<Person>();
+
+        personList.add(new Person("Jan", "Kowalski", "ul. Grudziądzka", "Toruń", "87-100", "666555444"));
+        personList.add(new Person("Łukasz", "Ącki", "ul. Olsztyńska", "Toruń", "87-100", "666555444"));
+        personList.add(new Person("Krzysztof", "Bęcki", "ul. Bydgoska", "Toruń", "87-100", "666555444"));
+        personList.add(new Person("Grażyna", "Waligórska", "ul. Włocławska", "Toruń", "87-100", "666555444"));
+        personList.add(new Person("Beata", "Frąckowiak", "ul. Krakowska", "Toruń", "87-100", "666555444"));
+        personList.add(new Person("Michał", "Ciąkalski", "ul. Gdańska", "Toruń", "87-100", "666555444"));
+        personList.add(new Person("Wanda", "Berezyńska", "ul. Szczecińska", "Toruń", "87-100", "666555444"));
+        personList.add(new Person("Patryk", "Śmiechowski", "ul. Wrocławska", "Toruń", "87-100", "666555444"));
+
+
+//        ObjectMapper mapper = new ObjectMapper();
+//        File filename = new File("person.json");
+//        filename.createNewFile();
+//        mapper.writeValue(filename, personList);
+//
+//        Person[] read = mapper.readValue(new File("person.json"), Person[].class);
+//
+//        ObservableList<Person> personListFX = FXCollections.observableArrayList();
+//
+//        for(Person p:  read){
+//            System.out.println(p.getName());
+//            personListFX.add(new Person(p.getName(), p.getLastName(), p.getStreet(), p.getCity(), p.getPostalCode(), p.getTelephone()));
+//        }
+
     }
 
-    public ObservableList<Person> getPersonList(){
+    public ObservableList<Person> getPersonList() {
         return personList;
     }
 
     public Stage getStage() {
         return stage;
-    }
-
-    public static void main(String[] args) {
-        launch();
-
     }
 
     public void start(Stage primaryStage) throws Exception {
@@ -83,7 +101,9 @@ public class Main extends Application {
             editStage.setScene(scene);
             editStage.show();
 
-        } catch (IOException err){
+            personDetails.setStage(editStage);
+
+        } catch (IOException err) {
             err.printStackTrace();
         }
     }
@@ -94,14 +114,22 @@ public class Main extends Application {
             loader.setLocation(Main.class.getResource("/NewPerson.fxml"));
             VBox window = (VBox) loader.load();
 
+//            NewPersonDetails newPersonDetails = loader.getController();
+            NewPersonDetails newPersonDetails = loader.getController();
+
             Stage editStage = new Stage();
             editStage.setTitle("Dodaj nowego pracownika");
             Scene scene = new Scene(window);
             editStage.setScene(scene);
             editStage.show();
 
-        } catch (IOException err){
+            newPersonDetails.setStage(editStage);
+
+        } catch (IOException err) {
             err.printStackTrace();
         }
+    }
+    public static void main(String[] args) {
+        launch(args);
     }
 }

@@ -39,15 +39,12 @@ public class PersonController {
         this.main.loadNewPerson();
     }
 
-
-
     @FXML
     public void handlePersonEdit() {
         Person selectPerson = personTable.getSelectionModel().getSelectedItem();
-        if(selectPerson!=null) {
-//            System.out.println(selectPerson.getName());
+        if (selectPerson != null) {
             this.main.loadPersonEdit(selectPerson);
-        }else {
+        } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(main.getStage());
             alert.setTitle("Brak osoby");
@@ -58,13 +55,36 @@ public class PersonController {
 
     @FXML
     public void handleDeletePerson() {
+        int index = personTable.getSelectionModel().getSelectedIndex();
+        Person selectPerson = personTable.getSelectionModel().getSelectedItem();
 
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Czy na pewno usunąć " + selectPerson.getName() + " " + selectPerson.getLastName() + "?", ButtonType.YES, ButtonType.NO);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) {
+            if (index >= 0) {
+                personTable.getItems().remove(index);
+            }
+        }
+    }
+
+    @FXML
+    public void showPersonDetails(Person person) {
+        firstNameLabel.setText(person.getName());
+        lastNameLabel.setText(person.getLastName());
+        streetLabel.setText(person.getStreet());
+        cityLabel.setText(person.getCity());
+        postalCodeLabel.setText(person.getPostalCode());
+        telephoneLabel.setText(person.getTelephone());
     }
 
     @FXML
     public void initialize() {
         firstNameCol.setCellValueFactory(cell -> cell.getValue().nameProperty());
         lastNameCol.setCellValueFactory(cell -> cell.getValue().lastNameProperty());
+
+        personTable.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldField, newField) -> showPersonDetails(newField));
     }
 
     public void setMain(Main main) {

@@ -1,6 +1,5 @@
 package com.sda.javafx.model;
 
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -68,5 +67,27 @@ public class Person {
 
     public StringProperty telephoneProperty() {
         return telephone;
+    }
+
+    public void setName(String name) { this.name.set(name); }
+
+    public void setLastName(String lastName) {
+        this.lastName.set(lastName);
+    }
+
+    public void setStreet(String street) {
+        this.street.set(street);
+    }
+
+    public void setCity(String city) {
+        this.city.set(city);
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode.set(postalCode);
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone.set(telephone);
     }
 }
