@@ -3,10 +3,7 @@ package com.sda.javafx.controller;
 import com.sda.javafx.Main;
 import com.sda.javafx.model.Person;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 
 public class PersonController {
 
@@ -14,43 +11,54 @@ public class PersonController {
 
     @FXML
     private TableView<Person> personTable;
-
     @FXML
     private Label firstNameLabel;
-
     @FXML
     private Label lastNameLabel;
-
     @FXML
     private Label streetLabel;
-
     @FXML
     private Label cityLabel;
-
     @FXML
     private Label postalCodeLabel;
-
     @FXML
     private Label telephoneLabel;
-
     @FXML
     private TableColumn<Person, String> firstNameCol;
-
     @FXML
     private TableColumn<Person, String> lastNameCol;
-
     @FXML
     private Button newButton;
-
     @FXML
     private Button editButton;
-
     @FXML
     private Button deleteButton;
 
     @FXML
-    public void handleNewButton(){
-        this.main.loadPersonEdit();
+    public void handleNewPerson() {
+        this.main.loadNewPerson();
+    }
+
+
+
+    @FXML
+    public void handlePersonEdit() {
+        Person selectPerson = personTable.getSelectionModel().getSelectedItem();
+        if(selectPerson!=null) {
+//            System.out.println(selectPerson.getName());
+            this.main.loadPersonEdit(selectPerson);
+        }else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(main.getStage());
+            alert.setTitle("Brak osoby");
+            alert.setContentText("Nikt nie został wybrany");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    public void handleDeletePerson() {
+
     }
 
     @FXML

@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:controller="com.sda.javafx.controller.PersonController" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sda.javafx.controller.PersonController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -103,20 +103,23 @@
                                           <Label text="Miasto" GridPane.rowIndex="3" />
                                           <Label text="Kod pocztowy" GridPane.rowIndex="4" />
                                           <Label text="Numer telefonu" GridPane.rowIndex="5" />
-                                          <Label text="Label" fx:id="firstNameLabel" GridPane.columnIndex="1" />
-                                          <Label text="Label" fx:id="lastNameLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <Label text="Label" fx:id="streetLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <Label text="Label" fx:id="cityLabel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                          <Label text="Label" fx:id="postalCodeLabel" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                          <Label text="Label" fx:id="telephoneLabel" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                          <Label fx:id="firstNameLabel" text="Label" GridPane.columnIndex="1" />
+                                          <Label fx:id="lastNameLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <Label fx:id="streetLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Label fx:id="cityLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <Label fx:id="postalCodeLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                          <Label fx:id="telephoneLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                        </children>
                                     </GridPane>
-                                    <Label layoutX="14.0" layoutY="25.0" text="Szczegóły pracownika:" />
+                                    <Label layoutX="8.0" layoutY="23.0" text="Szczegóły pracownika:">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
                                     <ButtonBar layoutX="42.0" layoutY="306.0" prefHeight="40.0" prefWidth="277.0">
                                       <buttons>
-                                        <Button onAction="#handleNewButton" mnemonicParsing="false" text="Nowy" />
-                                          <Button mnemonicParsing="false" text="Edytuj" />
-                                          <Button mnemonicParsing="false" text="Usuń" />
+                                        <Button mnemonicParsing="false" onAction="#handleNewPerson" text="Nowy" />
+                                          <Button mnemonicParsing="false" onAction="#handlePersonEdit" text="Edytuj" />
+                                          <Button mnemonicParsing="false" onAction="#handleDeletePerson" text="Usuń" />
                                       </buttons>
                                     </ButtonBar>
                                  </children>
