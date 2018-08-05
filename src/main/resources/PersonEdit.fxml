@@ -74,7 +74,7 @@
     </AnchorPane>
     <ButtonBar prefHeight="40.0" prefWidth="496.0">
       <buttons>
-        <Button mnemonicParsing="false" onAction="#handlePersonEditSave" text="Zapisz" />
+        <Button mnemonicParsing="false" onAction="#handleSavePerson" text="Zapisz" />
         <Button mnemonicParsing="false" onAction="#handleClosePerson" text="Anuluj" />
       </buttons>
       <VBox.margin>

@@ -1,1 +1,98 @@
-[{"name":"Jan","lastName":"Kowalski","street":"ul. Grudziądzka","city":"Toruń","postalCode":"87-100","telephone":"666555444"},{"name":"Łukasz","lastName":"Ącki","street":"ul. Olsztyńska","city":"Toruń","postalCode":"87-100","telephone":"666555444"},{"name":"Krzysztof1","lastName":"Bęcki","street":"ul. Bydgoska","city":"Toruń","postalCode":"87-100","telephone":"666555444"},{"name":"Grażyna","lastName":"Waligórska","street":"ul. Włocławska","city":"Toruń","postalCode":"87-100","telephone":"666555444"},{"name":"Beata","lastName":"Frąckowiak","street":"ul. Krakowska","city":"Toruń","postalCode":"87-100","telephone":"666555444"},{"name":"Michał","lastName":"Ciąkalski","street":"ul. Gdańska","city":"Toruń","postalCode":"87-100","telephone":"666555444"},{"name":"Wanda","lastName":"Berezyńska","street":"ul. Szczecińska","city":"Toruń","postalCode":"87-100","telephone":"666555444"},{"name":"Patryk","lastName":"Śmiechowski","street":"ul. Wrocławska","city":"Toruń","postalCode":"87-100","telephone":"666555444"},{"name":"Da","lastName":"St","street":"1","city":"1","postalCode":"1","telephone":"1"},{"name":"Damian","lastName":"Stefański","street":"Kromera","city":"Bydgoszcz","postalCode":"85-790","telephone":"555666777"},{"name":"Martyna","lastName":"Stefańska","street":"Kromera","city":"Bydgoszcz","postalCode":"85-790","telephone":"777888999"}]
+[
+  {
+    "name": "Jan",
+    "lastName": "Kowalski",
+    "street": "ul. Grudziądzka",
+    "city": "Toruń",
+    "postalCode": "87-100",
+    "telephone": "666555444"
+  },
+  {
+    "name": "Łukasz",
+    "lastName": "Ącki",
+    "street": "ul. Olsztyńska",
+    "city": "Toruń",
+    "postalCode": "87-100",
+    "telephone": "666555444"
+  },
+  {
+    "name": "Krzysztof",
+    "lastName": "Bęcki",
+    "street": "ul. Bydgoska",
+    "city": "Toruń",
+    "postalCode": "87-100",
+    "telephone": "666555444"
+  },
+  {
+    "name": "Grażyna",
+    "lastName": "Waligórska",
+    "street": "ul. Włocławska",
+    "city": "Toruń",
+    "postalCode": "87-100",
+    "telephone": "666555444"
+  },
+  {
+    "name": "Beata",
+    "lastName": "Frąckowiak",
+    "street": "ul. Krakowska",
+    "city": "Toruń",
+    "postalCode": "87-100",
+    "telephone": "666555444"
+  },
+  {
+    "name": "Michał",
+    "lastName": "Ciąkalski",
+    "street": "ul. Gdańska",
+    "city": "Toruń",
+    "postalCode": "87-100",
+    "telephone": "666555444"
+  },
+  {
+    "name": "Wanda",
+    "lastName": "Berezyńska",
+    "street": "ul. Szczecińska",
+    "city": "Toruń",
+    "postalCode": "87-100",
+    "telephone": "666555444"
+  },
+  {
+    "name": "Patryk",
+    "lastName": "Śmiechowski",
+    "street": "ul. Wrocławska",
+    "city": "Toruń",
+    "postalCode": "87-100",
+    "telephone": "666555444"
+  },
+  {
+    "name": "Dami",
+    "lastName": "Stef",
+    "street": "1",
+    "city": "1",
+    "postalCode": "1",
+    "telephone": "1"
+  },
+  {
+    "name": "Damian",
+    "lastName": "Stefański",
+    "street": "Kromera",
+    "city": "Bydgoszcz",
+    "postalCode": "85-790",
+    "telephone": "555666777"
+  },
+  {
+    "name": "Martyna",
+    "lastName": "Stefańska",
+    "street": "Kromera",
+    "city": "Bydgoszcz",
+    "postalCode": "85-790",
+    "telephone": "777888999"
+  },
+  {
+    "name": "Seweryn",
+    "lastName": "Smorga",
+    "street": null,
+    "city": null,
+    "postalCode": null,
+    "telephone": null
+  }
+]

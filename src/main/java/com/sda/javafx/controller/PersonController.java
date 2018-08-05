@@ -1,12 +1,23 @@
 package com.sda.javafx.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sda.javafx.Main;
 import com.sda.javafx.model.Person;
+import com.sda.javafx.model.PersonJSON;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PersonController {
 
@@ -111,5 +122,25 @@ public class PersonController {
     public void setMain(Main main) {
         this.main = main;
         personTable.setItems(main.getPersonList());
+    }
+
+    public void open() throws IOException {
+//        Nie działa wczytywanie plików
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        fileChooser.showOpenDialog(stage);
+        File selectedFile = fileChooser.showOpenDialog(stage);
+    }
+
+    public void saveAs() throws IOException {
+        main.saveAsFile();
+    }
+
+    public void about() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("INFORMACJE");
+        alert.setHeaderText("Baza pracowników w JavaFX");
+        alert.setContentText("Miłego korzystania!" + "\n" + "Autor: Damian Stefański");
+        alert.showAndWait();
     }
 }

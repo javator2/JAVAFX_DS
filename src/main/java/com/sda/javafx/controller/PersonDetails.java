@@ -57,7 +57,7 @@ public class PersonDetails {
         this.stage.close();
     }
 
-    public void handlePersonEditSave() {
+    public void handleSavePerson() {
         person.setName(name.getText());
         person.setLastName(lastName.getText());
         person.setStreet(street.getText());
@@ -68,7 +68,7 @@ public class PersonDetails {
     }
 
     @FXML
-    private void handleNewPersonSave() {
+    private void handleSaveNewPerson() {
 //        Person tempPerson = new Person();
 //        main.loadPersonEdit(tempPerson);
 //        main.getPersonList().add(tempPerson);

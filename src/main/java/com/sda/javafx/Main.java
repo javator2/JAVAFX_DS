@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -126,6 +127,7 @@ public class Main extends Application {
             personDetails.setMain(this);
             personDetails.setStage(editStage);
 
+
         } catch (IOException err) {
             err.printStackTrace();
         }
@@ -148,4 +150,23 @@ public class Main extends Application {
         filename.createNewFile();
         mapper.writeValue(filename, personJSONList);
     }
-}
+
+    public void saveAsFile() throws IOException {
+//        Zapisuje tylko jednego pracownika - DLACZEGO?
+        List<PersonJSON> personJSONList = new ArrayList<PersonJSON>();
+        for (Person newPersonList : personList) {
+            personJSONList.add(new PersonJSON(
+                    newPersonList.getName(),
+                    newPersonList.getLastName(),
+                    newPersonList.getStreet(),
+                    newPersonList.getCity(),
+                    newPersonList.getPostalCode(),
+                    newPersonList.getTelephone()));
+
+            ObjectMapper maper = new ObjectMapper();
+            FileChooser fileChooser = new FileChooser();
+            File newFile = fileChooser.showSaveDialog(stage).getAbsoluteFile();
+            maper.writeValue(newFile, newPersonList);
+            }
+        }
+    }
