@@ -4,6 +4,9 @@ import com.sda.javafx.Main;
 import com.sda.javafx.model.Person;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class PersonController {
 
@@ -29,15 +32,17 @@ public class PersonController {
     private TableColumn<Person, String> lastNameCol;
     @FXML
     private Button newButton;
-    @FXML
-    private Button editButton;
-    @FXML
-    private Button deleteButton;
+
+    private Stage stage;
 
     @FXML
     public void handleNewPerson() {
         this.main.loadNewPerson();
+//        Person tempPerson = new Person();
+//        main.loadPersonEdit(tempPerson);
+//        main.getPersonList().add(tempPerson);
     }
+
 
     @FXML
     public void handlePersonEdit() {
@@ -69,19 +74,35 @@ public class PersonController {
     }
 
     @FXML
+    public void handleSavePerson() throws IOException {
+        main.save();
+    }
+
+    @FXML
     public void showPersonDetails(Person person) {
-        firstNameLabel.setText(person.getName());
-        lastNameLabel.setText(person.getLastName());
-        streetLabel.setText(person.getStreet());
-        cityLabel.setText(person.getCity());
-        postalCodeLabel.setText(person.getPostalCode());
-        telephoneLabel.setText(person.getTelephone());
+        if (person != null) {
+            firstNameLabel.setText(person.getName());
+            lastNameLabel.setText(person.getLastName());
+            streetLabel.setText(person.getStreet());
+            cityLabel.setText(person.getCity());
+            postalCodeLabel.setText(person.getPostalCode());
+            telephoneLabel.setText(person.getTelephone());
+        } else {
+            firstNameLabel.setText("");
+            lastNameLabel.setText("");
+            streetLabel.setText("");
+            cityLabel.setText("");
+            postalCodeLabel.setText("");
+            telephoneLabel.setText("");
+        }
     }
 
     @FXML
     public void initialize() {
         firstNameCol.setCellValueFactory(cell -> cell.getValue().nameProperty());
         lastNameCol.setCellValueFactory(cell -> cell.getValue().lastNameProperty());
+
+        showPersonDetails(null);
 
         personTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldField, newField) -> showPersonDetails(newField));

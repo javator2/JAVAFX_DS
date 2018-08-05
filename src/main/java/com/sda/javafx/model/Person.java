@@ -12,6 +12,10 @@ public class Person {
     private StringProperty postalCode;
     private StringProperty telephone;
 
+//    public Person(){
+//        this(null,null,null,null,null,null);
+//    }
+
     public Person(String name, String lastName, String street, String city, String postalCode, String telephone) {
         this.name = new SimpleStringProperty(name);
         this.lastName = new SimpleStringProperty(lastName);

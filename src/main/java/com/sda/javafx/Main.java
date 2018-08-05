@@ -1,7 +1,6 @@
 package com.sda.javafx;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sda.javafx.controller.NewPersonDetails;
 import com.sda.javafx.controller.PersonController;
 import com.sda.javafx.controller.PersonDetails;
 import com.sda.javafx.model.Person;
@@ -16,7 +15,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,19 +28,19 @@ public class Main extends Application {
 
     public Main() throws IOException {
 
-        personJSONList.add(new PersonJSON("Jan", "Kowalski", "ul. Grudziądzka", "Toruń", "87-100", "666555444"));
-        personJSONList.add(new PersonJSON("Łukasz", "Ącki", "ul. Olsztyńska", "Toruń", "87-100", "666555444"));
-        personJSONList.add(new PersonJSON("Krzysztof", "Bęcki", "ul. Bydgoska", "Toruń", "87-100", "666555444"));
-        personJSONList.add(new PersonJSON("Grażyna", "Waligórska", "ul. Włocławska", "Toruń", "87-100", "666555444"));
-        personJSONList.add(new PersonJSON("Beata", "Frąckowiak", "ul. Krakowska", "Toruń", "87-100", "666555444"));
-        personJSONList.add(new PersonJSON("Michał", "Ciąkalski", "ul. Gdańska", "Toruń", "87-100", "666555444"));
-        personJSONList.add(new PersonJSON("Wanda", "Berezyńska", "ul. Szczecińska", "Toruń", "87-100", "666555444"));
-        personJSONList.add(new PersonJSON("Patryk", "Śmiechowski", "ul. Wrocławska", "Toruń", "87-100", "666555444"));
+//        personJSONList.add(new PersonJSON("Jan", "Kowalski", "ul. Grudziądzka", "Toruń", "87-100", "666555444"));
+//        personJSONList.add(new PersonJSON("Łukasz", "Ącki", "ul. Olsztyńska", "Toruń", "87-100", "666555444"));
+//        personJSONList.add(new PersonJSON("Krzysztof", "Bęcki", "ul. Bydgoska", "Toruń", "87-100", "666555444"));
+//        personJSONList.add(new PersonJSON("Grażyna", "Waligórska", "ul. Włocławska", "Toruń", "87-100", "666555444"));
+//        personJSONList.add(new PersonJSON("Beata", "Frąckowiak", "ul. Krakowska", "Toruń", "87-100", "666555444"));
+//        personJSONList.add(new PersonJSON("Michał", "Ciąkalski", "ul. Gdańska", "Toruń", "87-100", "666555444"));
+//        personJSONList.add(new PersonJSON("Wanda", "Berezyńska", "ul. Szczecińska", "Toruń", "87-100", "666555444"));
+//        personJSONList.add(new PersonJSON("Patryk", "Śmiechowski", "ul. Wrocławska", "Toruń", "87-100", "666555444"));
 
         ObjectMapper mapper = new ObjectMapper();
-        File filename = new File("person.json");
-        filename.createNewFile();
-        mapper.writeValue(filename, personJSONList);
+//        File filename = new File("person.json");
+//        filename.createNewFile();
+//        mapper.writeValue(filename, personJSONList);
 
         PersonJSON[] read = mapper.readValue(new File("person.json"), PersonJSON[].class);
 
@@ -115,18 +113,39 @@ public class Main extends Application {
             loader.setLocation(Main.class.getResource("/NewPerson.fxml"));
             VBox window = (VBox) loader.load();
 
-            NewPersonDetails newPersonDetails = loader.getController();
-
             Stage editStage = new Stage();
             editStage.setTitle("Dodaj nowego pracownika");
             Scene scene = new Scene(window);
             editStage.setScene(scene);
             editStage.show();
 
-            newPersonDetails.setStage(editStage);
+            Person person = new Person(null, null, null, null, null, null);
+
+            PersonDetails personDetails = loader.getController();
+            personDetails.setPerson(person);
+            personDetails.setMain(this);
+            personDetails.setStage(editStage);
 
         } catch (IOException err) {
             err.printStackTrace();
         }
+    }
+
+    public void save() throws IOException {
+        List<PersonJSON> personJSONList = new ArrayList<PersonJSON>();
+        for (Person newPersonList : personList) {
+            personJSONList.add(new PersonJSON(
+                    newPersonList.getName(),
+                    newPersonList.getLastName(),
+                    newPersonList.getStreet(),
+                    newPersonList.getCity(),
+                    newPersonList.getPostalCode(),
+                    newPersonList.getTelephone()));
+        }
+
+        ObjectMapper mapper = new ObjectMapper();
+        File filename = new File("person.json");
+        filename.createNewFile();
+        mapper.writeValue(filename, personJSONList);
     }
 }
