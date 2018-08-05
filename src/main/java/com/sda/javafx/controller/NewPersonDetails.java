@@ -1,9 +1,7 @@
 package com.sda.javafx.controller;
 
-import com.sda.javafx.Main;
 import com.sda.javafx.model.Person;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -32,7 +30,7 @@ public class NewPersonDetails {
     }
 
     public void handleSaveNewPerson() {
-        Person person = new Person(name.getText(), lastName.getText(), street.getText(), city.getText(),postalCode.getText(),telephoneNumber.getText());
+        Person person = new Person(name.getText(), lastName.getText(), street.getText(), city.getText(), postalCode.getText(), telephoneNumber.getText());
         this.stage.close();
     }
 

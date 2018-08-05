@@ -1,9 +1,11 @@
 package com.sda.javafx;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sda.javafx.controller.NewPersonDetails;
 import com.sda.javafx.controller.PersonController;
 import com.sda.javafx.controller.PersonDetails;
 import com.sda.javafx.model.Person;
+import com.sda.javafx.model.PersonJSON;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,7 +14,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends Application {
 
@@ -20,46 +26,41 @@ public class Main extends Application {
     private VBox layout;
 
     private ObservableList<Person> personList = FXCollections.observableArrayList();
+    private List<PersonJSON> personJSONList = new ArrayList<PersonJSON>();
 
-    public Main() {
+    public Main() throws IOException {
 
-//    }
-//
-//    public static void main(String[] args) throws IOException {
-//        List<Person> personList = new ArrayList<Person>();
+        personJSONList.add(new PersonJSON("Jan", "Kowalski", "ul. Grudziądzka", "Toruń", "87-100", "666555444"));
+        personJSONList.add(new PersonJSON("Łukasz", "Ącki", "ul. Olsztyńska", "Toruń", "87-100", "666555444"));
+        personJSONList.add(new PersonJSON("Krzysztof", "Bęcki", "ul. Bydgoska", "Toruń", "87-100", "666555444"));
+        personJSONList.add(new PersonJSON("Grażyna", "Waligórska", "ul. Włocławska", "Toruń", "87-100", "666555444"));
+        personJSONList.add(new PersonJSON("Beata", "Frąckowiak", "ul. Krakowska", "Toruń", "87-100", "666555444"));
+        personJSONList.add(new PersonJSON("Michał", "Ciąkalski", "ul. Gdańska", "Toruń", "87-100", "666555444"));
+        personJSONList.add(new PersonJSON("Wanda", "Berezyńska", "ul. Szczecińska", "Toruń", "87-100", "666555444"));
+        personJSONList.add(new PersonJSON("Patryk", "Śmiechowski", "ul. Wrocławska", "Toruń", "87-100", "666555444"));
 
-        personList.add(new Person("Jan", "Kowalski", "ul. Grudziądzka", "Toruń", "87-100", "666555444"));
-        personList.add(new Person("Łukasz", "Ącki", "ul. Olsztyńska", "Toruń", "87-100", "666555444"));
-        personList.add(new Person("Krzysztof", "Bęcki", "ul. Bydgoska", "Toruń", "87-100", "666555444"));
-        personList.add(new Person("Grażyna", "Waligórska", "ul. Włocławska", "Toruń", "87-100", "666555444"));
-        personList.add(new Person("Beata", "Frąckowiak", "ul. Krakowska", "Toruń", "87-100", "666555444"));
-        personList.add(new Person("Michał", "Ciąkalski", "ul. Gdańska", "Toruń", "87-100", "666555444"));
-        personList.add(new Person("Wanda", "Berezyńska", "ul. Szczecińska", "Toruń", "87-100", "666555444"));
-        personList.add(new Person("Patryk", "Śmiechowski", "ul. Wrocławska", "Toruń", "87-100", "666555444"));
+        ObjectMapper mapper = new ObjectMapper();
+        File filename = new File("person.json");
+        filename.createNewFile();
+        mapper.writeValue(filename, personJSONList);
 
+        PersonJSON[] read = mapper.readValue(new File("person.json"), PersonJSON[].class);
 
-//        ObjectMapper mapper = new ObjectMapper();
-//        File filename = new File("person.json");
-//        filename.createNewFile();
-//        mapper.writeValue(filename, personList);
-//
-//        Person[] read = mapper.readValue(new File("person.json"), Person[].class);
-//
-//        ObservableList<Person> personListFX = FXCollections.observableArrayList();
-//
-//        for(Person p:  read){
-//            System.out.println(p.getName());
-//            personListFX.add(new Person(p.getName(), p.getLastName(), p.getStreet(), p.getCity(), p.getPostalCode(), p.getTelephone()));
-//        }
+        for (PersonJSON p : read) {
+            personList.add(new Person(p.getName(), p.getLastName(), p.getStreet(), p.getCity(), p.getPostalCode(), p.getTelephone()));
+        }
+    }
 
+    public Stage getStage() {
+        return stage;
     }
 
     public ObservableList<Person> getPersonList() {
         return personList;
     }
 
-    public Stage getStage() {
-        return stage;
+    public static void main(String[] args) {
+        launch(args);
     }
 
     public void start(Stage primaryStage) throws Exception {
@@ -114,7 +115,6 @@ public class Main extends Application {
             loader.setLocation(Main.class.getResource("/NewPerson.fxml"));
             VBox window = (VBox) loader.load();
 
-//            NewPersonDetails newPersonDetails = loader.getController();
             NewPersonDetails newPersonDetails = loader.getController();
 
             Stage editStage = new Stage();
@@ -128,8 +128,5 @@ public class Main extends Application {
         } catch (IOException err) {
             err.printStackTrace();
         }
-    }
-    public static void main(String[] args) {
-        launch(args);
     }
 }
